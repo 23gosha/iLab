@@ -1,72 +1,72 @@
-#include <stdio.h>//test
+#include <stdio.h>
 #include <math.h>
 
-struct equation //структура, включающая в себя x1,x2 - корни, D - дискриминант, n - количество корней
+struct roots //structure including x_1,x_2 - roots, D - discriminant, count - quantity of roots
 {
-	double D,x1,x2;
-	int n;
+	double D,x_1,x_2;
+	int count;
 };
 
-struct equation function (double a, double b, double c) //функция, считающая количество и значение корней
+struct roots function (double a, double b, double c) //function, counting quantity and values of roots
 {
-    struct equation e;
+    struct roots r;
     
-    //случай а=0 (линейное уравнение)
+    //case а=0 (linear equation)
 	if (a==0)
 	{
 		if (b==0)
 		{
-			if (c==0) e.n=3;
-			if (c!=0) e.n=0;
+			if (c==0) r.count=3;
+			if (c!=0) r.count=0;
 		}			
 	
 		if (b!=0)
 		{
-		e.x1=-c/b;
-		e.n=1;
+		r.x_1=-c/b;
+		r.count=1;
 	    }
 	}
 	
-	//случай, в котором а не равно 0 (квадратное уравнение)
+	//case a is not equals 3 (quadratic equation)
 	    if (a!=0)
     {
-    	e.D=(b*b)-(4*a*c); //подсчет дискриминанта
+    	r.D=(b*b)-(4*a*c); //computing discrimninant
 
-        // случай с отрицательным дискриминантом
-    	if (e.D < 0) e.n=0;
-    	// случай с нулевым дискриминантом
-    	if (e.D == 0)
+        // case of negative discriminant
+    	if (r.D < 0) r.count=0;
+    	// case of zero discriminant
+    	if (r.D == 0)
     	{
-    		e.n=1;
-    		e.x1=(-b+sqrt(e.D))/(2*a);
+    		r.count=1;
+    		r.x_1=(-b+sqrt(r.D))/(2*a);
     	}
-    	// случай с положительным дискриминантом
-    	if (e.D > 0)
+    	// case of positive discriminant
+    	if (r.D > 0)
     	{
-    		e.n=2;
-    		e.x1=(-b+sqrt(e.D))/(2*a);
-    		e.x2=(-b+sqrt(e.D))/(2*a);
+    		r.count=2;
+    		r.x_1=(-b+sqrt(r.D))/(2*a);
+    		r.x_2=(-b+sqrt(r.D))/(2*a);
     	}
     }
-    return e;
+    return r;
 }
 	
 
 int main()
 {
-	//ВВОД ПЕРЕМЕННЫХ
-	equation e;
+	//INPUT OF VARIABLES
+	roots r;
 	double a,b,c;
 	scanf("%lg %lg %lg", &a,&b,&c);
     
-    //ПОДСЧЕТ КОЛИЧЕСТВА И ЗНАЧЕНИЯ КОРНЕЙ
-    e = function (a,b,c); // выводится структура е, в которой e.x1,e.x2 - корни, e.n - количество корней
+    //COUNTING QUANTITY AND VALUE OF ROOTS
+    r = function (a,b,c); // outputting structure e where r.x1,r.x2 - roots, r.n - quantity of roots
     
-    //ВЫВОД РЕЗУЛЬТАТА
-    if (e.n==0) printf("No roots");
-    if (e.n==1) printf("One root: %f \n", e.x1);
-    if (e.n==2) printf("Two roots: %f and %f",e.x1,e.x2);
-    if (e.n==3) printf("Any number from R is root");
+    //OUTPUT OF RESULT
+    if (r.count==0) printf("No roots");
+    if (r.count==1) printf("One root: %f \n", r.x_1);
+    if (r.count==2) printf("Two roots: %f and %f",r.x_1,r.x_2);
+    if (r.count==3) printf("Any number from R is root");
 
 	return 0;
 }
