@@ -1,4 +1,4 @@
-#include <stdio.h>
+#include <stdio.h>//test
 #include <math.h>
 
 struct equation //структура, включающая в себя x1,x2 - корни, D - дискриминант, n - количество корней
