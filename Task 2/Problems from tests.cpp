@@ -1,0 +1,179 @@
+#include <stdio.h>
+
+#ifdef MY_COMP
+#define DBG printf(" #"),
+#else
+#define DBG if(0)
+#endif
+
+// a2-------------------------------------------------- 2008-2
+int a2();
+// b2-------------------------------------------------- 2008-2
+int b2();
+void sort();
+void printarr();
+void scanarr();
+void delextra();
+// c2-------------------------------------------------- 2008-2
+int c2();
+// d1-------------------------------------------------- 2008-1
+int d1();
+int q2();
+// ------------------------------------------------------
+
+
+int main()
+{
+	DBG printf("Press 1 for A (2008, 2 variant)\n");
+    DBG printf("Press 2 for B (2008, 2 variant)\n");
+    DBG printf("Press 3 for C (2008, 2 variant)\n");
+    DBG printf("Press 4 for D (2008, 1 variant)\n");
+	
+	int no;
+    scanf("%d", &no);
+    
+    switch(no)
+    {
+        case 1 : a2(); break;
+        case 2 : b2(); break;
+        case 3 : c2(); break;
+        case 4 : d1(); break;
+
+    }
+}
+
+// a2--------------------------------------------------
+
+int a2()
+{
+	int N,i;
+	scanf("%d", &N);
+	for (i=N-1;i>=1;i--)
+	{
+		if (N%i==0) break;
+	}
+	printf("%d", i);
+}
+
+// b2--------------------------------------------------
+
+void sort(int* arr, int size)
+{
+    int tmp, i, j;
+ 
+    for(i = 0; i < size - 1; i++)
+    {            
+        for(j = 0; j < size - 1; j++)
+        {     
+            if (arr[j + 1] < arr[j]) 
+            {
+                tmp = arr[j + 1]; 
+                arr[j + 1] = arr[j]; 
+                arr[j] = tmp;
+            }
+        }
+    }
+}
+
+void printarr(int* arr,int N)
+{
+	int i;
+	for (i=0;i<=N-1;i++)
+	{
+		printf("%d ",arr[i]);
+	}	
+	printf("\n");
+}
+
+void scanarr(int *arr,int N)
+{
+	int i;
+	for (i=0;i<=N-1;i++)
+	{
+		scanf("%d",&arr[i]);
+	}
+}
+
+void delextra(int *arr,int N)
+{
+	int i,k;
+	for (i=0;i<=N-1;i++)
+      {
+      	while (arr[i] == arr[i+1])
+      	{
+      		for (k = i; k<=N; k++) 
+      		{
+      			arr[k]=arr[k+1];
+      		}
+      		N--;
+//      		printf("N = %d \n", N);
+      	}
+      }
+      arr[1001]=N;
+}
+
+int b2()
+{
+	int a[1001];
+	int n,i,j,k;
+	scanf("%d",&n);
+	
+	scanarr(a,n);
+	
+	sort(a,n);
+
+    delextra(a,n);
+    
+	printarr(a,a[1001]);
+	
+	
+}
+
+// c2--------------------------------------------------
+
+int c2()
+{
+int ch[100000];
+int i=1,j,k,n;
+while ((ch[i] = getchar( ))!=EOF) i++;
+
+for (j=1;j<=i;j++)
+{
+	while ((ch[j] == ' ') && (ch[j+1] == ' '))
+	{
+		for (k = j; k<=i; k++) 
+		{
+			ch[k]=ch[k+1];
+		}
+		i--;
+	}
+}
+
+i--;
+
+n=1;
+
+while (n<=(i))
+{
+    putchar(ch[n]); n++;
+}
+
+}
+// d1--------------------------------------------------
+int q2(int n,int k)
+{
+	if (n<0) return 0;
+	if (n==0 && k>=0) return 1;
+	if (n>0 && k==0) return 0;
+	return (q2(n-2*k,k-1)+q2(n-k,k-1)+q2(n,k-1));
+}
+
+int d1()
+{
+	int a,b,Q2,N;
+	scanf("%d", &N);
+	
+	Q2=q2(N,N);
+	printf("%d", Q2);
+}
+//--------------------------------------------------
