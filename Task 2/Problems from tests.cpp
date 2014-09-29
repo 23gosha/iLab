@@ -1,7 +1,7 @@
 #include <stdio.h>
 
 #ifdef MY_COMP
-#define DBG printf(" #"),
+#define DBG printf("# "),
 #else
 #define DBG if(0)
 #endif
@@ -19,7 +19,10 @@ int c2();
 // d1-------------------------------------------------- 2008-1
 int d1();
 int q2();
-// ------------------------------------------------------
+// c1 ------------------------------------------------- 2007-1
+int c1_07();
+int check();
+//-----------------------------------------------------------
 
 
 int main()
@@ -28,6 +31,7 @@ int main()
     DBG printf("Press 2 for B (2008, 2 variant)\n");
     DBG printf("Press 3 for C (2008, 2 variant)\n");
     DBG printf("Press 4 for D (2008, 1 variant)\n");
+    DBG printf("Press 5 for C (2007, 1 variant)\n");
 	
 	int no;
     scanf("%d", &no);
@@ -38,7 +42,7 @@ int main()
         case 2 : b2(); break;
         case 3 : c2(); break;
         case 4 : d1(); break;
-
+        case 5 : c1_07(); break;
     }
 }
 
@@ -47,7 +51,11 @@ int main()
 int a2()
 {
 	int N,i;
+	
+	DBG printf("Enter N \n");
+	
 	scanf("%d", &N);
+	
 	for (i=N-1;i>=1;i--)
 	{
 		if (N%i==0) break;
@@ -116,6 +124,9 @@ int b2()
 {
 	int a[1001];
 	int n,i,j,k;
+	
+	DBG printf("Enter n \n");
+	
 	scanf("%d",&n);
 	
 	scanarr(a,n);
@@ -135,6 +146,9 @@ int c2()
 {
 int ch[100000];
 int i=1,j,k,n;
+
+DBG printf("Enter text \n");
+
 while ((ch[i] = getchar( ))!=EOF) i++;
 
 for (j=1;j<=i;j++)
@@ -171,9 +185,35 @@ int q2(int n,int k)
 int d1()
 {
 	int a,b,Q2,N;
+	
+	DBG printf("Enter N \n");
+	
 	scanf("%d", &N);
 	
 	Q2=q2(N,N);
 	printf("%d", Q2);
 }
-//--------------------------------------------------
+// c1_07--------------------------------------------------
+
+int check(int n)
+{
+	if (n==0) return 1;
+	if ((n-2)%4 == 0) return 0;
+	if ((n+1)%4 == 0) n = (n+1)/4;
+	if ((n-1)%4 == 0) n = (n-1)/4;
+	if (n%4     == 0) n = n/4;
+	if ((n==1) || (n==3) || (n==4)) return 1;
+	check(n);
+}
+
+int c1_07()
+{
+	int N;
+	
+	DBG printf("Enter N \n");
+	
+	scanf ("%d",&N);
+
+	if (check(N) == 0) printf("NO");
+    if (check(N) == 1) printf("YES");
+}
