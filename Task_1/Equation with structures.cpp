@@ -3,11 +3,11 @@
 
 struct roots //structure including x_1,x_2 - roots, D - discriminant, count - quantity of roots
 {
-	double D,x_1,x_2;
-	int count;
+	double D = 0,x_1 = 0,x_2 = 0;
+	int count = 0;
 };
 
-struct roots function (double a, double b, double c) //function, counting quantity and values of roots
+struct roots function (double a = 0, double b = 0, double c = 0) //function, counting quantity and values of roots
 {
     struct roots r;
     
@@ -28,7 +28,7 @@ struct roots function (double a, double b, double c) //function, counting quanti
 	}
 	
 	//case a is not equals 3 (quadratic equation)
-	    if (a!=0)
+    if (a!=0)
     {
     	r.D=(b*b)-(4*a*c); //computing discrimninant
 
@@ -56,7 +56,7 @@ int main()
 {
 	//INPUT OF VARIABLES
 	roots r;
-	double a,b,c;
+	double a = 0, b = 0, c = 0 ;
 	scanf("%lg %lg %lg", &a,&b,&c);
     
     //COUNTING QUANTITY AND VALUE OF ROOTS
