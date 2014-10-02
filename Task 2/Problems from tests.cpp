@@ -232,18 +232,18 @@ int c1_07()
 //int arr[K][K];
 
 int q(int n = 0,int k = 0)
-{	
+{    
     int q0;
     
     if (k<0) 
-	{
-//		arr[n][k] = 0;
-		return 0;
-	}
+    {
+//        arr[n][k] = 0;
+        return 0;
+    }
     if ((n==1 && k>0) || (n==0 && k>0))
     {
-//    	arr[n][k] = 1;
-    	return 1;
+//        arr[n][k] = 1;
+        return 1;
     }
     
 //    arr[n][k] = q(n-k,k-1)+q(n,k-1);
@@ -254,7 +254,7 @@ int q(int n = 0,int k = 0)
 }
 
 int d4_07()
-{	
+{    
     int Q = 0,N = 0,i = 0,j = 0;
     
     DBG printf("Enter N \n");
@@ -266,8 +266,8 @@ int d4_07()
     
 /*    for (i=0;i<=N-1;i++)
     {
-    	for (j=0;j<=N-1;j++)
-    	printf("%d ", arr[i][j]);
-    	printf("\n");
+        for (j=0;j<=N-1;j++)
+        printf("%d ", arr[i][j]);
+        printf("\n");
     }*/
 }
