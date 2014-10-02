@@ -22,7 +22,9 @@ int q2();
 // c1_08 ------------------------------------------------- 2007-1
 int c1_07();
 int check();
-//-----------------------------------------------------------
+// d4_0 -------------------------------------------------- 2007-4
+int d4_07();
+int q();
 
 
 int main()
@@ -32,6 +34,7 @@ int main()
     DBG printf("Press 3 for C (2008, 2 variant)\n");
     DBG printf("Press 4 for D (2008, 1 variant)\n");
     DBG printf("Press 5 for C (2007, 1 variant)\n");
+    DBG printf("Press 6 for D (2007, 4 variant)\n");
     
     int pr_number;
     scanf("%d", &pr_number);
@@ -43,6 +46,7 @@ int main()
         case 3 : c2_08(); break;
         case 4 : d1_08(); break;
         case 5 : c1_07(); break;
+        case 6 : d4_07(); break;
     }
 }
 
@@ -217,4 +221,53 @@ int c1_07()
 
     if (check(N) == 0) printf("NO");
     if (check(N) == 1) printf("YES");
+}
+
+
+// d4_07--------------------------------------------------
+// Have some problems with putting meanings of the functions into the array in this task. If N>5 the program crashes. 
+// Everything relating to array is turned off and marked by '//' now.
+
+//const int K = 500;
+//int arr[K][K];
+
+int q(int n = 0,int k = 0)
+{	
+    int q0;
+    
+    if (k<0) 
+	{
+//		arr[n][k] = 0;
+		return 0;
+	}
+    if ((n==1 && k>0) || (n==0 && k>0))
+    {
+//    	arr[n][k] = 1;
+    	return 1;
+    }
+    
+//    arr[n][k] = q(n-k,k-1)+q(n,k-1);
+    
+    q0 = q(n-k,k-1)+q(n,k-1);
+    
+    return q0;
+}
+
+int d4_07()
+{	
+    int Q = 0,N = 0,i = 0,j = 0;
+    
+    DBG printf("Enter N \n");
+    
+    scanf("%d", &N);
+    
+    Q=q(N,N);
+    printf("%d \n", Q);
+    
+/*    for (i=0;i<=N-1;i++)
+    {
+    	for (j=0;j<=N-1;j++)
+    	printf("%d ", arr[i][j]);
+    	printf("\n");
+    }*/
 }
